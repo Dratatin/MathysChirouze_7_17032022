@@ -1,0 +1,41 @@
+.recipe {
+    border-radius: $radius;
+    overflow: hidden;
+    &__image {
+        background: $pinkSwan;
+        display: block;
+        height: 178px;
+    }
+    &__description {
+        background: $mercury;
+        padding: 20px;
+        &__header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            &__title {
+                font-size: 18px;
+            }
+            &__time-icon {
+                margin-left: auto;
+                margin-right: 10px;
+            }
+        }
+        &__content {
+            display: flex;
+            &__liste {
+                flex: 1;
+                margin-right: 10px;
+            }
+            &__text {
+                flex: 1;
+                margin-left: 10px;
+            }
+        }
+        span {
+            font-weight: 700;
+        }
+    }
+}

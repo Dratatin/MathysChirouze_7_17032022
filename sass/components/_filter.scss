@@ -1,0 +1,59 @@
+.filterblock {
+    margin: 30px 0;
+    .filters {
+        display: flex;
+        margin: 15px 0;
+        &__element {
+            align-items: center;
+            border-radius: $radius;
+            display: flex;
+            font-weight: 700;
+            margin-right: 15px;
+            padding: 25px;
+            &--secondary {
+                background: $secondary;
+            }
+            &--tertiary {
+                background: $tertiary;
+            }
+            &--quaternary {
+                background: $quaternary;
+            }
+            &__input {
+                color: #fff;
+                display: flex;
+                font-size: 18px;
+                width: 120px;
+                &::placeholder {
+                    color: inherit;
+                    font-size: inherit;
+                }
+            }
+        }
+    }
+    .tag {
+        display: flex;
+        margin: 15px 0;
+        &__button {
+            align-items: center;
+            border-radius: $radius;
+            color: #fff;
+            display: flex;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 10px 20px;
+            &--secondary {
+                background: $secondary;
+            }
+            &--tertiary {
+                background: $tertiary;
+            }
+            &--quaternary {
+                background: $quaternary;
+            }
+            img{
+                margin-left: 10px;
+            }
+        }
+    }
+}

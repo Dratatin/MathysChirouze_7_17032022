@@ -56,21 +56,200 @@ input {
   border-radius: 0;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, ul, input, span {
   font-family: "DM Sans", sans-serif;
 }
 
 h1 {
+  color: #D04F4F;
   font-size: 36px;
   font-weight: 700;
-  color: #D04F4F;
 }
 
 .header {
   display: block;
-  text-align: center;
   margin: 50px 0 30px 0;
+  text-align: center;
 }
 .header__logo {
   margin: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.searchbar {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #E7E7E7;
+  border-radius: 0.4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.searchbar__input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 18px;
+  padding: 20px;
+}
+.searchbar__label {
+  margin: 15px;
+  position: relative;
+  top: 3px;
+}
+
+.filterblock {
+  margin: 30px 0;
+}
+.filterblock .filters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 15px 0;
+}
+.filterblock .filters__element {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0.4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 700;
+  margin-right: 15px;
+  padding: 25px;
+}
+.filterblock .filters__element--secondary {
+  background: #3282F7;
+}
+.filterblock .filters__element--tertiary {
+  background: #68D9A4;
+}
+.filterblock .filters__element--quaternary {
+  background: #ED6454;
+}
+.filterblock .filters__element__input {
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  width: 120px;
+}
+.filterblock .filters__element__input::-webkit-input-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__input::-moz-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__input:-ms-input-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__input::-ms-input-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__input::placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 15px 0;
+}
+.filterblock .tag__button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0.4em;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+}
+.filterblock .tag__button--secondary {
+  background: #3282F7;
+}
+.filterblock .tag__button--tertiary {
+  background: #68D9A4;
+}
+.filterblock .tag__button--quaternary {
+  background: #ED6454;
+}
+.filterblock .tag__button img {
+  margin-left: 10px;
+}
+
+.recipe {
+  border-radius: 0.4em;
+  overflow: hidden;
+}
+.recipe__image {
+  background: #C7BEBE;
+  display: block;
+  height: 178px;
+}
+.recipe__description {
+  background: #E7E7E7;
+  padding: 20px;
+}
+.recipe__description__header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+.recipe__description__header__title {
+  font-size: 18px;
+}
+.recipe__description__header__time-icon {
+  margin-left: auto;
+  margin-right: 10px;
+}
+.recipe__description__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.recipe__description__content__liste {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 10px;
+}
+.recipe__description__content__text {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: 10px;
+}
+.recipe__description span {
+  font-weight: 700;
+}
+
+.main {
+  margin: 0 6vw;
 }/*# sourceMappingURL=main.css.map */

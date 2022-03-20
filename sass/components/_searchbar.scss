@@ -1,0 +1,17 @@
+.searchbar {
+    align-items: center;
+    background: $mercury;
+    border-radius: $radius;
+    display: flex;
+    justify-content: space-between;
+    &__input {
+        flex: 1;
+        font-size: 18px;
+        padding: 20px;
+    }
+    &__label {
+        margin: 15px;
+        position: relative;
+        top: 3px;
+    }
+}

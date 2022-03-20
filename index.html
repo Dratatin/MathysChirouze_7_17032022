@@ -14,5 +14,69 @@
         <img class="header__logo" src="img/logo.svg" alt="Logo les petits plats">
         <h1 class="header__title">Les petits plats</h1>
     </header>
+    <main class="main">
+        <section class="search-section">
+            <div class="searchbar">
+                <input class="searchbar__input" id="search" type="text" placeholder="Rechercher une recette" name="search">
+                <label class="searchbar__label" for="search">
+                    <img src="img/search.svg" alt="icone loupe rechercher">
+                </label>
+            </div>
+            <div class="filterblock">
+                <div class="tag">
+                    <button class="tag__button tag__button--secondary">
+                        Coco
+                        <img src="img/close.svg" alt="icon fermer">
+                    </button>
+                </div>
+                <div class="filters">
+                    <div class="filters__element filters__element--secondary">
+                        <input class="filters__element__input" type="text" class="" placeholder="Ingrédients">
+                        <label>
+                            <img src="img/arrow.svg" alt="icon flèche vers le bas">
+                        </label>
+                    </div>
+                    <div class="filters__element filters__element--tertiary">
+                        <input class="filters__element__input" type="text" class="" placeholder="Appareil">
+                        <label>
+                            <img src="img/arrow.svg" alt="icon flèche vers le bas">
+                        </label>
+                    </div>
+                    <div class="filters__element filters__element--quaternary">
+                        <input class="filters__element__input" type="text" class="" placeholder="Ustensilles">
+                        <label>
+                            <img src="img/arrow.svg" alt="icon flèche vers le bas">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="result-section grid">
+            <article class="recipe">
+                <a class="recipe__image" href="">
+                    <img src="" alt="">
+                </a>
+                <div class="recipe__description">
+                    <div class="recipe__description__header">
+                        <h2 class="recipe__description__header__title">Limonade de Coco</h2>
+                        <img class="recipe__description__header__time-icon" src="img/time.svg" alt="Icon temps de préparation de la recette">
+                        <span class="recipe__description__header__time-content">10 min</span>
+                    </div>
+                    <div class="recipe__description__content">
+                        <ul class="recipe__description__content__liste">
+                            <li><span>Lait de coco:</span> 400ml</li>
+                            <li><span>Jus de citron:</span> 2</li>
+                            <li><span>Créme de coco:</span> 4 cuillères</li>
+                            <li><span>Sucre:</span> 20g</li>
+                            <li><span>Glaçons:</span> 2</li>
+                        </ul>
+                        <p class="recipe__description__content__text">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    <script src="script/main.js"></script>
 </body>
 </html>
