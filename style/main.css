@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -56,8 +57,13 @@ input {
   border-radius: 0;
 }
 
-h1, h2, h3, p, ul, input, span {
+h1 {
   font-family: "DM Sans", sans-serif;
+}
+
+h2, h3, p, ul, input, span, ul {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
 }
 
 h1 {
@@ -109,67 +115,13 @@ h1 {
 
 .filterblock {
   margin: 30px 0;
-}
-.filterblock .filters {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 15px 0;
-}
-.filterblock .filters__element {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 0.4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-weight: 700;
-  margin-right: 15px;
-  padding: 25px;
-}
-.filterblock .filters__element--secondary {
-  background: #3282F7;
-}
-.filterblock .filters__element--tertiary {
-  background: #68D9A4;
-}
-.filterblock .filters__element--quaternary {
-  background: #ED6454;
-}
-.filterblock .filters__element__input {
-  color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 18px;
-  width: 120px;
-}
-.filterblock .filters__element__input::-webkit-input-placeholder {
-  color: inherit;
-  font-size: inherit;
-}
-.filterblock .filters__element__input::-moz-placeholder {
-  color: inherit;
-  font-size: inherit;
-}
-.filterblock .filters__element__input:-ms-input-placeholder {
-  color: inherit;
-  font-size: inherit;
-}
-.filterblock .filters__element__input::-ms-input-placeholder {
-  color: inherit;
-  font-size: inherit;
-}
-.filterblock .filters__element__input::placeholder {
-  color: inherit;
-  font-size: inherit;
+  position: relative;
 }
 .filterblock .tag {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 15px 0;
+  margin-right: 15px;
 }
 .filterblock .tag__button {
   -webkit-box-align: center;
@@ -195,6 +147,124 @@ h1 {
 }
 .filterblock .tag__button img {
   margin-left: 10px;
+}
+.filterblock .filters {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  z-index: 1;
+}
+.filterblock .filters__element {
+  border-radius: 0.4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 700;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 15px 15px 0px 0px;
+  padding: 25px;
+}
+.filterblock .filters__element--secondary {
+  background: #3282F7;
+}
+.filterblock .filters__element--tertiary {
+  background: #68D9A4;
+}
+.filterblock .filters__element--quaternary {
+  background: #ED6454;
+}
+.filterblock .filters__element__button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.filterblock .filters__element__button__input {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  width: 130px;
+}
+.filterblock .filters__element__button__input::-webkit-input-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__button__input::-moz-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__button__input:-ms-input-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__button__input::-ms-input-placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__button__input::placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+.filterblock .filters__element__button__input--after {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+.filterblock .filters__element__button__input--after::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.filterblock .filters__element__button__input--after::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.filterblock .filters__element__button__input--after:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.filterblock .filters__element__button__input--after::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.filterblock .filters__element__button__input--after::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.filterblock .filters__element__list {
+  color: #fff;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-gap: 7px;
+  line-height: 21px;
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+.filterblock .filters__element__list li {
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+}
+.filterblock .filters__element__list::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.filterblock .filters__element__list--hide {
+  display: none;
 }
 
 .recipe {
@@ -254,14 +324,17 @@ h1 {
   display: flex;
 }
 .recipe__description__content__liste {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  line-height: 14.4px;
   margin-right: 10px;
 }
 .recipe__description__content__text {
   display: -webkit-box;
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   margin-left: 10px;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -273,4 +346,8 @@ h1 {
 
 .main {
   margin: 0 6vw;
+}
+.main .result-section {
+  position: relative;
+  top: 90px;
 }/*# sourceMappingURL=main.css.map */

@@ -1,39 +1,9 @@
 .filterblock {
     margin: 30px 0;
-    .filters {
-        display: flex;
-        margin: 15px 0;
-        &__element {
-            align-items: center;
-            border-radius: $radius;
-            display: flex;
-            font-weight: 700;
-            margin-right: 15px;
-            padding: 25px;
-            &--secondary {
-                background: $secondary;
-            }
-            &--tertiary {
-                background: $tertiary;
-            }
-            &--quaternary {
-                background: $quaternary;
-            }
-            &__input {
-                color: #fff;
-                display: flex;
-                font-size: 18px;
-                width: 120px;
-                &::placeholder {
-                    color: inherit;
-                    font-size: inherit;
-                }
-            }
-        }
-    }
+    position: relative;
     .tag {
         display: flex;
-        margin: 15px 0;
+        margin-right: 15px;
         &__button {
             align-items: center;
             border-radius: $radius;
@@ -53,6 +23,76 @@
             }
             img{
                 margin-left: 10px;
+            }
+        }
+    }
+    .filters {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        z-index: 1;
+        &__element {
+            border-radius: $radius;
+            display: flex;
+            font-weight: 700;
+            flex-direction: column;
+            margin: 15px 15px 0px 0px;
+            padding: 25px;
+            &--secondary {
+                background: $secondary;
+            }
+            &--tertiary {
+                background: $tertiary;
+            }
+            &--quaternary {
+                background: $quaternary;
+            }
+            &__button {
+                align-items: center;
+                display: flex;
+                justify-content: space-between;
+                &__input {
+                    color: #fff;
+                    font-size: 18px;
+                    font-weight: bold;
+                    width: 130px;
+                    &::placeholder {
+                        color: inherit;
+                        font-size: inherit;
+                    }
+                    &--after {
+                        width: min-content;
+                        &::placeholder {
+                            color: rgba($color: #fff, $alpha: 0.5);
+                        }
+                    }
+                }
+
+            }
+            &__list {
+                color: #fff;
+                display: grid;
+                grid-template-columns: repeat(3, 150px);
+                grid-gap: 7px;
+                line-height: 21px;
+                margin-top: 20px;
+                max-height: 400px;
+                overflow-y: scroll;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;  /* IE 10+ */
+                li {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                &::-webkit-scrollbar {
+                    width: 0px;
+                    background: transparent;
+                }
+                &--hide {
+                    display: none;
+                }
             }
         }
     }
