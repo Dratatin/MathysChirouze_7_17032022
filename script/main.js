@@ -53,7 +53,7 @@ class Filter {
         this.DOMfilter = DOMfilter;
         this.elemColor = elemColor;
         this.addFilters();
-        this.eventOpen();
+        this.filterEvent();
     }
     addFilters () {
         this.filters.forEach(element => {
@@ -65,31 +65,49 @@ class Filter {
             })
         });
     }
-    eventOpen () {
+    filterEvent () {
+        let open = false;
         const input = this.DOMfilter.querySelector("input");
         const placeholder = input.placeholder;
         const filter = this.DOMfilter;
+        let othersFilters = Array.from(document.querySelectorAll(".filters__element"));
+        othersFilters = othersFilters.filter((elem) => { return elem !== filter });
         const dropDownIcon = this.DOMfilter.querySelector("img");
-        let open = false;
-        
+
         this.DOMfilter.addEventListener("click", (e) => {
             e.stopPropagation();
+            othersFilters.forEach(element => {
+                element.style.pointerEvents = "none";
+            });
             if (open == false) {
                 const placeholderMin = placeholder.toLowerCase();
                 filter.querySelector("ul").classList.remove("filters__element__list--hide");
                 input.classList.add("filters__element__button__input--after");
                 input.placeholder = `Rechercher un ${placeholderMin}`;
+                input.focus();
                 dropDownIcon.classList.add("dropdownIcon--after");
                 open = true;
+                document.addEventListener("click", function toggle(e) {
+                    if (!filter.contains(e.target)) {
+                        remove();
+                    } 
+                    this.removeEventListener("click", toggle);
+                });
             }
-            else if (dropDownIcon.contains(e.target)){
-                filter.querySelector("ul").classList.add("filters__element__list--hide");
-                input.classList.remove("filters__element__button__input--after");
-                input.placeholder = placeholder;
-                dropDownIcon.classList.remove("dropdownIcon--after");
-                open = false;
+            else if (open == true && dropDownIcon.contains(e.target)) {
+                remove();
             }
-        })
+        });
+        function remove () {
+            filter.querySelector("ul").classList.add("filters__element__list--hide");
+            input.classList.remove("filters__element__button__input--after");
+            input.placeholder = placeholder;
+            dropDownIcon.classList.remove("dropdownIcon--after");
+            othersFilters.forEach(element => {
+                element.style.pointerEvents = "unset";
+            });
+            open = false;
+        }
     }
 }
 
