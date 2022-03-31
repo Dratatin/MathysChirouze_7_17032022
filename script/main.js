@@ -1,4 +1,5 @@
 import { recipes } from "../data/recipes.js";
+import { Searchbar } from "./search.js";
 import { Filter } from "./filters.js";
 import { Recipes } from "./recipes.js";
 
@@ -8,8 +9,12 @@ class App {
     }
     constructor (recipes) {
         this.recipes = recipes;
+        this.launchSearchBar();
         this.launchFilters();
         this.launchRecipes();
+    }
+    launchSearchBar () {
+        new Searchbar();
     }
     launchFilters () {
         let ingredients = [];
