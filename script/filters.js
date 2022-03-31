@@ -38,6 +38,7 @@ export class Filter {
                 filter.querySelector("ul").classList.remove("filters__element__list--hide");
                 input.classList.add("filters__element__button__input--after");
                 input.placeholder = `Rechercher un ${placeholderMin}`;
+                input.style.cursor = "text";
                 input.focus();
                 dropDownIcon.classList.add("dropdownIcon--after");
                 open = true;
@@ -57,6 +58,7 @@ export class Filter {
             filter.querySelector("ul").classList.add("filters__element__list--hide");
             input.classList.remove("filters__element__button__input--after");
             input.placeholder = placeholder;
+            input.style.cursor = "pointer";
             dropDownIcon.classList.remove("dropdownIcon--after");
             othersFilters.forEach(element => {
                 element.style.pointerEvents = "unset";
