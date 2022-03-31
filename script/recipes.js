@@ -7,6 +7,7 @@ export class Recipes {
     }
     addRecipes () {
         const resultSection = document.querySelector(".result-section");
+        resultSection.innerHTML = "";
         this.recipes.forEach(element => {
             const recipeDOM = new Recipe(element);
             resultSection.appendChild(recipeDOM.createRecipeBox());
