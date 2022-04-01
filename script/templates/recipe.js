@@ -35,11 +35,17 @@ export class Recipe {
 
         this.ingredients.forEach(element => {
             const li = document.createElement("li");
-            if (element.unit != undefined)  {
+            if (element.unit && element.quantity != undefined)  {
                 li.innerHTML = `<span>${element.ingredient}:</span> ${element.quantity}${element.unit}`;
             }
-            else {
+            else if (element.unit !=undefined && element.quantity == undefined) {
+                li.innerHTML = `<span>${element.ingredient}:</span> ${element.unit}`;
+            }
+            else if (element.quantity !=undefined && element.unit == undefined) {
                 li.innerHTML = `<span>${element.ingredient}:</span> ${element.quantity}`;
+            }
+            else {
+                li.innerHTML = `<span>${element.ingredient}</span>`;
             }
             ul.appendChild(li);
         });
