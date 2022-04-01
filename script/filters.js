@@ -5,14 +5,34 @@ export class Filter {
         this.filters = filters;
         this.DOMfilter = DOMfilter;
         this.elemColor = elemColor;
-        this.addFilters();
+        this.DOMfilter.addEventListener("input", this.manageSearchWidget.bind(this));
+        this.displayFilters(this.filters);
         this.filterEvent();
     }
-    addFilters () {
-        this.filters.forEach(element => {
+    manageSearchWidget(e) {
+        if (e.target.value.length > 2 ) {
+            const inputData = e.target.value.toLowerCase();
+            const newTabFilters = []
+            this.filters.forEach(element => {
+                //looking for a match
+                const findIt = element.toLowerCase().includes(inputData);
+                if (findIt == true) {
+                    newTabFilters.push(element);
+                }
+            });
+            this.displayFilters(newTabFilters);
+        }
+        else {
+            this.displayFilters(this.filters);
+        }
+    }
+    displayFilters (filters) {
+        const listContainer = this.DOMfilter.querySelector("ul");
+        listContainer.innerHTML = "";
+        filters.forEach(element => {
             const li = document.createElement("li");
             li.innerText = element;
-            this.DOMfilter.querySelector("ul").appendChild(li);
+            listContainer.appendChild(li);
             li.addEventListener("click", () => {
                 new Tag (li.innerText, this.elemColor);
             })
