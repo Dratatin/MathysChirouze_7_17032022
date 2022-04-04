@@ -1,5 +1,5 @@
 import { Recipes } from "./recipes.js";
 
-export function algo () {
+export function searchBarAlgo () {
     console.log("yo");
 }
