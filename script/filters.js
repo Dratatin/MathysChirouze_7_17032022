@@ -35,7 +35,7 @@ export class Filter {
             li.innerText = element;
             listContainer.appendChild(li);
             li.addEventListener("click", (e) => {
-                new Tag (li.innerText, this.elemColor);
+                new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
                 filtersAlgo(e);
             })
         });
