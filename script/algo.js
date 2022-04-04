@@ -1,10 +1,12 @@
 import { recipes } from "../data/recipes.js";
 import { Recipes } from "./recipes.js";
 
+let newTabRecipes = recipes;
+
 export function searchBarAlgo (e) {
     if (e.target.value.length > 2 ) {
         const inputData = e.target.value.toLowerCase();
-        const newTabRecipes = recipes.filter(element => {
+        newTabRecipes = recipes.filter(element => {
             const match = inputMatch (inputData, element);
             if (match == true) {
                 return element;
@@ -18,11 +20,9 @@ export function searchBarAlgo (e) {
 }
 //looking for a match
 function inputMatch (inputData, element) {
-    const findInTitle = element.name.toLowerCase().includes(inputData);
-    const findInDescription = element.description.toLowerCase().includes(inputData);
-    const findInIngredients = element.ingredients.some(element => {
-        return element.ingredient.toLowerCase().includes(inputData) === true;
-    });
+    const findInTitle = searchInTitle(element, inputData);
+    const findInDescription = searchInDescription(element, inputData);
+    const findInIngredients = searchInIngredients(element, inputData);
     if (findInTitle || findInDescription || findInIngredients == true) {
         return true;
     }
@@ -31,16 +31,18 @@ function inputMatch (inputData, element) {
     }
 }
 
-export function filtersAlgo (e) {
+export function filtersAlgo (e, filterType) {
     console.log(e.target);
 }
 
-function findInTitle (element, data) {
-
+function searchInTitle (element, data) {
+    return element.name.toLowerCase().includes(data);
 }
 
-function findInIngredients (element, data) {
-
+function searchInIngredients (element, data) {
+    return element.ingredients.some(element => {
+        return element.ingredient.toLowerCase().includes(data) === true;
+    });
 }
 
 function findInAppliances (element, data) {
@@ -49,4 +51,8 @@ function findInAppliances (element, data) {
 
 function findInUstensils (element, data) {
 
+}
+
+function searchInDescription (element, data) {
+    element.description.toLowerCase().includes(data)
 }
