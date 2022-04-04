@@ -1,4 +1,4 @@
-import { algo } from "./algo.js";
+import { searchBarAlgo } from "./algo.js";
 
 export class Searchbar {
     constructor () {
