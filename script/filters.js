@@ -34,7 +34,7 @@ export class Filter {
             li.innerText = element;
             listContainer.appendChild(li);
             li.addEventListener("click", () => {
-                new Tag (li.innerText, this.elemColor);
+                new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
             })
         });
     }
@@ -90,13 +90,14 @@ export class Filter {
 
 
 export class Tag {
-    constructor(filter, elemColor) {
+    constructor(filter, elemColor, filterType) {
         this.filter = filter;
         this.elemColor = elemColor;
+        this.filterType = filterType;
         this.addTag();
     }
     addTag () {
-        let tag = new CreateTag (this.filter, this.elemColor);
+        let tag = new CreateTag (this.filter, this.elemColor, this.filterType);
         tag = tag.createTag();
         const tagConteneur = document.querySelector(".tag");
         tagConteneur.appendChild(tag);
