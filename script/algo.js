@@ -1,7 +1,7 @@
 import { recipes } from "../data/recipes.js";
 import { Recipes } from "./recipes.js";
 
-export function algo (e) {
+export function searchBarAlgo (e) {
     if (e.target.value.length > 2 ) {
         const inputData = e.target.value.toLowerCase();
         const newTabRecipes = recipes.filter(element => {
@@ -31,8 +31,8 @@ function inputMatch (inputData, element) {
     }
 }
 
-function filters () {
-
+export function filtersAlgo (e) {
+    console.log(e.target);
 }
 
 function findInTitle (element, data) {
