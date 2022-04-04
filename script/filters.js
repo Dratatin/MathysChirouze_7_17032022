@@ -92,13 +92,14 @@ export class Filter {
 
 
 export class Tag {
-    constructor(filter, elemColor) {
+    constructor(filter, elemColor, filterType) {
         this.filter = filter;
         this.elemColor = elemColor;
+        this.filterType = filterType;
         this.addTag();
     }
     addTag () {
-        let tag = new CreateTag (this.filter, this.elemColor);
+        let tag = new CreateTag (this.filter, this.elemColor, this.filterType);
         tag = tag.createTag();
         const tagConteneur = document.querySelector(".tag");
         tagConteneur.appendChild(tag);
