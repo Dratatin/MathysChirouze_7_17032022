@@ -6,6 +6,6 @@ export class Searchbar {
         this.listenInput()
     }
     listenInput () {
-        this.input.addEventListener("input", algo);
+        this.input.addEventListener("input", searchBarAlgo);
     }
 }
