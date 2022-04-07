@@ -1,5 +1,5 @@
-import { recipes } from "../data/recipes.js";
-import { Recipes } from "./recipes.js";
+import { recipes } from "../../data/recipes.js";
+import { Recipes } from "../recipes.js";
 
 let currentTabRecipes = recipes;
 let filteredTabRecipes = "";
