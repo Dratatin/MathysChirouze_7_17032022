@@ -34,9 +34,9 @@ export class Filter {
             const li = document.createElement("li");
             li.innerText = element;
             listContainer.appendChild(li);
-            li.addEventListener("click", (e) => {
+            li.addEventListener("click", () => {
                 new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
-                filtersAlgo(e);
+                filtersAlgo();
             })
         });
     }
@@ -108,5 +108,6 @@ export class Tag {
     removeTag (e) {
         let element = e.target;
         element.parentNode.removeChild(element);
+        filtersAlgo();
     }
 }

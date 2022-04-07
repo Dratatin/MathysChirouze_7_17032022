@@ -1,18 +1,19 @@
 import { recipes } from "../data/recipes.js";
 import { Recipes } from "./recipes.js";
 
-let newTabRecipes = recipes;
+let currentTabRecipes = recipes;
+let filteredTabRecipes = "";
 
-export function searchBarAlgo (e) {
-    if (e.target.value.length > 2 ) {
-        const inputData = e.target.value.toLowerCase();
-        newTabRecipes = newTabRecipes.filter(element => {
+export function searchBarAlgo () {
+    const inputData = document.querySelector("#search").value.toLowerCase();
+    if (inputData.length > 2 ) {
+        currentTabRecipes = recipes.filter(element => {
             const match = inputMatch (inputData, element);
             if (match == true) {
                 return element;
             }
         });
-        new Recipes (newTabRecipes);
+        new Recipes (currentTabRecipes);
     }
     else {
         new Recipes (recipes);
@@ -31,40 +32,51 @@ function inputMatch (inputData, element) {
     }
 }
 
-export function filtersAlgo (e) {
-    const filterData = e.target.innerText.toLowerCase();
-    const filterType = e.target.parentNode.parentNode.id;
-    switch (filterType) {
-        case "ingredients":
-            newTabRecipes = newTabRecipes.filter(element => {
-                const match = searchInIngredients (element, filterData);
-                if (match == true) {
-                    return element;
-                }
-            });
-            new Recipes (newTabRecipes);
-            break;
-        case "appliances":
-            newTabRecipes = newTabRecipes.filter(element => {
-                const match = searchInAppliances (element, filterData);
-                if (match == true) {
-                    return element;
-                }
-            });
-            new Recipes (newTabRecipes);
-            break;
-        case "ustensils":
-            newTabRecipes = newTabRecipes.filter(element => {
-                const match = searchInUstensils (element, filterData);
-                if (match == true) {
-                    return element;
-                }
-            });
-            new Recipes (newTabRecipes);
-            break;
+
+export function filtersAlgo () {
+    const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
+    if (filtersDatas.length != 0) {
+        filtersDatas.forEach(filterData => {
+            filterMatch(filterData);
+        });
+        new Recipes (currentTabRecipes);
+    }
+    else {
+        new Recipes(recipes);
     }
 }
 
+//looking for a match
+function filterMatch (filterData) {
+    const filterType = filterData.getAttribute("data-filtertype");
+    filterData = filterData.innerText.toLowerCase();
+    switch (filterType) {
+        case "ingredients":
+            currentTabRecipes = currentTabRecipes.filter(element => {
+                const match = searchInIngredients (element, filterData);
+                if (match == true) {
+                    return true;
+                }
+            });
+            break;
+        case "appliances":
+            currentTabRecipes = currentTabRecipes.filter(element => {
+                const match = searchInAppliances (element, filterData);
+                if (match == true) {
+                    return true;
+                }
+            });
+            break;
+        case "ustensils":
+            currentTabRecipes = currentTabRecipes.filter(element => {
+                const match = searchInUstensils (element, filterData);
+                if (match == true) {
+                    return true;
+                }
+            });
+            break;
+    }
+}
 
 
 function searchInTitle (element, data) {
@@ -90,3 +102,34 @@ function searchInUstensils (element, data) {
 function searchInDescription (element, data) {
     element.description.toLowerCase().includes(data)
 }
+
+
+
+// export function algo () {
+//     const inputData = document.querySelector("#search").value.toLowerCase();
+//     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
+
+//     if (inputData.length > 2 && filtersDatas.length == 0) {
+//         currentTabRecipes = recipes.filter(element => {
+//             const match = inputMatch (inputData, element);
+//             if (match == true) {
+//                 return element;
+//             }
+//         });
+//         new Recipes (currentTabRecipes);
+//     }
+
+
+//     else if ((inputData.length > 2 && filtersDatas.length != 0)) {
+//     }
+
+//     else if (inputData.length < 3 && filtersDatas.length != 0) {
+//         filtersDatas.forEach(filterData => {
+//             filterMatch(filterData);
+//         }); 
+//     }
+
+//     else {
+//         new Recipes (recipes);
+//     }
+// }
