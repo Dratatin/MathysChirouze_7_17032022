@@ -1,110 +1,37 @@
-import { CreateTag } from "./templates/tag.js";
+import { Filter } from "./filter.js";
 
-export class Filter {
-    constructor (filters, DOMfilter, elemColor) {
-        this.filters = filters;
-        this.DOMfilter = DOMfilter;
-        this.elemColor = elemColor;
-        this.DOMfilter.addEventListener("input", this.manageSearchWidget.bind(this));
-        this.displayFilters(this.filters);
-        this.filterEvent();
+export class Filters {
+    constructor(recipes) {
+        this.recipes = recipes;
+        this.addFilters();
     }
-    manageSearchWidget(e) {
-        if (e.target.value.length > 2 ) {
-            const inputData = e.target.value.toLowerCase();
-            const newTabFilters = []
-            this.filters.forEach(element => {
-                //looking for a match
-                const findIt = element.toLowerCase().includes(inputData);
-                if (findIt == true) {
-                    newTabFilters.push(element);
-                }
+    addFilters() {
+        let ingredients = [];
+        let appliances = [];
+        let ustensils = [];
+        this.recipes.forEach(recipe => {
+            recipe.ingredients.forEach(element => {
+                ingredients.push(element.ingredient.charAt(0).toUpperCase() + element.ingredient.slice(1));
             });
-            this.displayFilters(newTabFilters);
-        }
-        else {
-            this.displayFilters(this.filters);
-        }
-    }
-    displayFilters (filters) {
-        const listContainer = this.DOMfilter.querySelector("ul");
-        listContainer.innerHTML = "";
-        filters.forEach(element => {
-            const li = document.createElement("li");
-            li.innerText = element;
-            listContainer.appendChild(li);
-            li.addEventListener("click", () => {
-                new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
+            appliances.push(recipe.appliance.charAt(0).toUpperCase() + recipe.appliance.slice(1));
+            recipe.ustensils.forEach(element => {
+                ustensils.push(element.charAt(0).toUpperCase() + element.slice(1));
+            });
+        });
+
+        ingredients = removeDuplicates(ingredients);
+        appliances = removeDuplicates(appliances);
+        ustensils = removeDuplicates(ustensils);
+
+        function removeDuplicates (tags) {
+            const result = tags.filter((element , position) => {
+                return tags.indexOf(element) == position;
             })
-        });
-    }
-    filterEvent () {
-        let open = false;
-        const input = this.DOMfilter.querySelector("input");
-        const placeholder = input.placeholder;
-        const filter = this.DOMfilter;
-        let othersFilters = Array.from(document.querySelectorAll(".filters__element"));
-        othersFilters = othersFilters.filter((elem) => { return elem !== filter });
-        const dropDownIcon = this.DOMfilter.querySelector("img");
-
-        this.DOMfilter.addEventListener("click", (e) => {
-            e.stopPropagation();
-            othersFilters.forEach(element => {
-                element.style.pointerEvents = "none";
-            });
-            // Open sort list
-            if (open == false) {
-                const placeholderMin = placeholder.toLowerCase();
-                filter.querySelector("ul").classList.remove("filters__element__list--hide");
-                input.classList.add("filters__element__button__input--after");
-                input.placeholder = `Rechercher un ${placeholderMin}`;
-                input.style.cursor = "text";
-                input.focus();
-                dropDownIcon.classList.add("dropdownIcon--after");
-                open = true;
-                document.addEventListener("click", function toggle(e) {
-                    if (!filter.contains(e.target)) {
-                        remove();
-                    } 
-                    this.removeEventListener("click", toggle);
-                });
-            }
-            // Close sort list
-            else if (open == true && dropDownIcon.contains(e.target)) {
-                remove();
-            }
-        });
-        function remove () {
-            filter.querySelector("ul").classList.add("filters__element__list--hide");
-            input.classList.remove("filters__element__button__input--after");
-            input.placeholder = placeholder;
-            input.style.cursor = "pointer";
-            dropDownIcon.classList.remove("dropdownIcon--after");
-            othersFilters.forEach(element => {
-                element.style.pointerEvents = "unset";
-            });
-            open = false;
+            return result;
         }
-    }
-}
 
-
-export class Tag {
-    constructor(filter, elemColor, filterType) {
-        this.filter = filter;
-        this.elemColor = elemColor;
-        this.filterType = filterType;
-        this.addTag();
-    }
-    addTag () {
-        let tag = new CreateTag (this.filter, this.elemColor, this.filterType);
-        tag = tag.createTag();
-        const tagConteneur = document.querySelector(".tag");
-        tagConteneur.appendChild(tag);
-        tag.addEventListener("click", this.removeTag)
-    }
-    removeTag (e) {
-        let element = e.target;
-        element.parentNode.removeChild(element);
+        new Filter(ingredients, document.querySelector("#ingredients"), "secondary");
+        new Filter(appliances, document.querySelector("#appliances"), "tertiary");
+        new Filter(ustensils, document.querySelector("#ustensils"), "quaternary");
     }
 }
