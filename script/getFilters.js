@@ -6,7 +6,8 @@ export class getFilters {
         let ingredients = [];
         this.recipes.forEach(recipe => {
             recipe.ingredients.forEach(element => {
-                ingredients.push(element.ingredient.charAt(0).toUpperCase() + element.ingredient.slice(1));
+                element = element.ingredient.toLowerCase();
+                ingredients.push(element.toLowerCase().charAt(0).toUpperCase() + element.slice(1));
             });
         });
         ingredients = this.removeDuplicates(ingredients);
@@ -14,8 +15,9 @@ export class getFilters {
     }
     getAppliances () {
         let appliances = [];
-        this.recipes.forEach(recipe => {
-            appliances.push(recipe.appliance.charAt(0).toUpperCase() + recipe.appliance.slice(1));
+        this.recipes.forEach(element => {
+            element = element.appliance.toLowerCase();
+            appliances.push(element.charAt(0).toUpperCase() + element.slice(1));
         });
         appliances = this.removeDuplicates(appliances);
         return appliances

@@ -1,4 +1,6 @@
 import { recipes } from "../../data/recipes.js";
+import { List } from "../filter.js";
+import { getFilters } from "../getFilters.js";
 import { Recipes } from "../recipes.js";
 
 let currentTabRecipes = recipes;
@@ -14,9 +16,11 @@ export function searchBarAlgo () {
             }
         });
         new Recipes (currentTabRecipes);
+        newFiltersList(currentTabRecipes);
     }
     else {
         new Recipes (recipes);
+        newFiltersList(recipes);
     }
 }
 //looking for a match
@@ -40,9 +44,11 @@ export function filtersAlgo () {
             filterMatch(filterData);
         });
         new Recipes (currentTabRecipes);
+        newFiltersList(currentTabRecipes);
     }
     else {
         new Recipes(recipes);
+        newFiltersList(recipes);
     }
 }
 
@@ -79,6 +85,22 @@ function filterMatch (filterData) {
 }
 
 
+function newFiltersList (recipes) {
+    const filtersList = new getFilters (recipes);
+    const ingredients = filtersList.getIngredients();
+    const appliances = filtersList.getAppliances();
+    const ustensils = filtersList.getUstensils();
+
+    const ingredientsDOM = document.querySelector("#ingredients");
+    const appliancesDOM = document.querySelector("#appliances");
+    const ustensilsDOM = document.querySelector("#ustensils");
+
+    new List (ingredientsDOM, ingredients, "secondary");
+    new List (appliancesDOM, appliances, "tertiary");
+    new List (ustensilsDOM, ustensils, "quaternary");
+}
+
+
 function searchInTitle (element, data) {
     return element.name.toLowerCase().includes(data);
 }
@@ -102,34 +124,3 @@ function searchInUstensils (element, data) {
 function searchInDescription (element, data) {
     element.description.toLowerCase().includes(data)
 }
-
-
-
-// export function algo () {
-//     const inputData = document.querySelector("#search").value.toLowerCase();
-//     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
-
-//     if (inputData.length > 2 && filtersDatas.length == 0) {
-//         currentTabRecipes = recipes.filter(element => {
-//             const match = inputMatch (inputData, element);
-//             if (match == true) {
-//                 return element;
-//             }
-//         });
-//         new Recipes (currentTabRecipes);
-//     }
-
-
-//     else if ((inputData.length > 2 && filtersDatas.length != 0)) {
-//     }
-
-//     else if (inputData.length < 3 && filtersDatas.length != 0) {
-//         filtersDatas.forEach(filterData => {
-//             filterMatch(filterData);
-//         }); 
-//     }
-
-//     else {
-//         new Recipes (recipes);
-//     }
-// }
