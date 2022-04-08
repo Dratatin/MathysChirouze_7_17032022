@@ -6,8 +6,9 @@ export class Filter {
         this.filters = filters;
         this.DOMfilter = DOMfilter;
         this.elemColor = elemColor;
-        this.DOMfilter.addEventListener("input", this.manageSearchWidget.bind(this));
-        this.displayFilters(this.filters);
+        const input = this.DOMfilter.querySelector("input");
+        input.addEventListener("input", this.manageSearchWidget.bind(this));
+        this.createFiltersList(this.filters);
         this.filterEvent();
     }
     manageSearchWidget(e) {
@@ -21,24 +22,14 @@ export class Filter {
                     newTabFilters.push(element);
                 }
             });
-            this.displayFilters(newTabFilters);
+            this.createFiltersList(newTabFilters);
         }
         else {
-            this.displayFilters(this.filters);
+            this.createFiltersList(this.filters);
         }
     }
-    displayFilters (filters) {
-        const listContainer = this.DOMfilter.querySelector("ul");
-        listContainer.innerHTML = "";
-        filters.forEach(element => {
-            const li = document.createElement("li");
-            li.innerText = element;
-            listContainer.appendChild(li);
-            li.addEventListener("click", () => {
-                new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
-                filtersAlgo();
-            })
-        });
+    createFiltersList (filters) {
+        new List (this.DOMfilter, filters, this.elemColor);
     }
     filterEvent () {
         let open = false;
@@ -90,6 +81,27 @@ export class Filter {
     }
 }
 
+class List {
+    constructor (DOMfilter, filters, elemColor) {
+        this.DOMfilter = DOMfilter;
+        this.filters = filters;
+        this.elemColor = elemColor;
+        this.displayFiltersList();
+    }
+    displayFiltersList () {
+        const listContainer = this.DOMfilter.querySelector("ul");
+        listContainer.innerHTML = "";
+        this.filters.forEach(element => {
+            const li = document.createElement("li");
+            li.innerText = element;
+            listContainer.appendChild(li);
+            li.addEventListener("click", () => {
+                new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
+            })
+        });
+    }
+
+}
 
 export class Tag {
     constructor(filter, elemColor, filterType) {
