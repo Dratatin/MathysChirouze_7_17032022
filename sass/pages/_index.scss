@@ -3,5 +3,14 @@
     .result-section {
         position: relative;
         top: 120px;
+        &__empty {
+            grid-column: 2 / 3;
+            font-size: 18px;
+            color: rgba($color: #000, $alpha: 0.8);
+            display: flex;
+            justify-content: center;
+            position: relative;
+            top: 50px;
+        }
     }
 }
