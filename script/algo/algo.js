@@ -16,8 +16,15 @@ export function searchBarAlgo () {
                 return element;
             }
         });
-        new Recipes (result);
-        newFiltersList (result);
+        if (result.length != 0) {
+            new Recipes (result);
+            newFiltersList (result);
+        }
+        else {
+            const resultSection = document.querySelector(".result-section");
+            resultSection.innerHTML = `<div class="result-section__empty">Aucune recette ne correspond à votre critère… vous pouvez
+            chercher « tarte aux pommes », « poisson », etc...</div>`;
+        }
     }
     else if (inputData.length < 3 && filtersDatas.length === 0) {
         new Recipes (recipes);
