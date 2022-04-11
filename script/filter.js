@@ -6,27 +6,8 @@ export class Filter {
         this.filters = filters;
         this.DOMfilter = DOMfilter;
         this.elemColor = elemColor;
-        const input = this.DOMfilter.querySelector("input");
-        input.addEventListener("input", this.manageSearchWidget.bind(this));
         this.createFiltersList(this.filters);
         this.filterEvent();
-    }
-    manageSearchWidget(e) {
-        if (e.target.value.length > 2 ) {
-            const inputData = e.target.value.toLowerCase();
-            const newTabFilters = []
-            this.filters.forEach(element => {
-                //looking for a match
-                const findIt = element.toLowerCase().includes(inputData);
-                if (findIt == true) {
-                    newTabFilters.push(element);
-                }
-            });
-            this.createFiltersList(newTabFilters);
-        }
-        else {
-            this.createFiltersList(this.filters);
-        }
     }
     createFiltersList (filters) {
         new List (this.DOMfilter, filters, this.elemColor);
@@ -86,12 +67,31 @@ export class List {
         this.DOMfilter = DOMfilter;
         this.filters = filters;
         this.elemColor = elemColor;
-        this.displayFiltersList();
+        this.displayFiltersList(this.filters);
+        const input = this.DOMfilter.querySelector("input");
+        input.oninput = this.manageSearchList.bind(this);
     }
-    displayFiltersList () {
+    manageSearchList(e) {
+        if (e.target.value.length > 2 ) {
+            const inputData = e.target.value.toLowerCase();
+            const newTabFilters = []
+            this.filters.forEach(element => {
+                //looking for a match
+                const findIt = element.toLowerCase().includes(inputData);
+                if (findIt == true) {
+                    newTabFilters.push(element);
+                }
+            });
+            this.displayFiltersList(newTabFilters);
+        }
+        else {
+            this.displayFiltersList(this.filters);
+        }
+    }
+    displayFiltersList (filters) {
         const listContainer = this.DOMfilter.querySelector("ul");
         listContainer.innerHTML = "";
-        this.filters.forEach(element => {
+        filters.forEach(element => {
             const li = document.createElement("li");
             li.innerText = element;
             listContainer.appendChild(li);
