@@ -4,12 +4,13 @@
         position: relative;
         top: 120px;
         &__empty {
-            grid-column: 2 / 3;
-            font-size: 18px;
             color: rgba($color: #000, $alpha: 0.8);
             display: flex;
+            font-size: 18px;
+            grid-column: span 3;
             justify-content: center;
             position: relative;
+            text-align: center;
             top: 50px;
         }
     }
