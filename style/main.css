@@ -372,15 +372,16 @@ h1 {
   top: 120px;
 }
 .main .result-section__empty {
-  grid-column: 2/3;
-  font-size: 18px;
   color: rgba(0, 0, 0, 0.8);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 18px;
+  grid-column: span 3;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  text-align: center;
   top: 50px;
 }/*# sourceMappingURL=main.css.map */
