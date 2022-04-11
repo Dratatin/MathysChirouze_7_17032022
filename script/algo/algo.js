@@ -4,23 +4,27 @@ import { getFilters } from "../getFilters.js";
 import { Recipes } from "../recipes.js";
 
 let currentTabRecipes = recipes;
-let filteredTabRecipes = "";
+let filteredRecipes = recipes;
 
 export function searchBarAlgo () {
     const inputData = document.querySelector("#search").value.toLowerCase();
-    if (inputData.length > 2 ) {
-        currentTabRecipes = recipes.filter(element => {
+    const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
+    if (inputData.length > 2) {
+        let result = filteredRecipes.filter(element => {
             const match = inputMatch (inputData, element);
             if (match == true) {
                 return element;
             }
         });
-        new Recipes (currentTabRecipes);
-        newFiltersList(currentTabRecipes);
+        new Recipes (result);
+        newFiltersList (result);
+    }
+    else if (inputData.length < 3 && filtersDatas.length === 0) {
+        new Recipes (recipes);
+        newFiltersList (recipes);
     }
     else {
-        new Recipes (recipes);
-        newFiltersList(recipes);
+        filtersAlgo();
     }
 }
 //looking for a match
@@ -39,27 +43,29 @@ function inputMatch (inputData, element) {
 
 export function filtersAlgo () {
     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
-    if (filtersDatas.length != 0) {
+    if (filtersDatas != 0) {
         filtersDatas.forEach(filterData => {
             filterMatch(filterData);
-        });
+        }); 
         new Recipes (currentTabRecipes);
         newFiltersList(currentTabRecipes);
+        filteredRecipes = currentTabRecipes;
+        currentTabRecipes = recipes;
     }
-    else {
-        new Recipes(recipes);
-        newFiltersList(recipes);
+    else  {
+        filteredRecipes = recipes;
+        searchBarAlgo();
     }
 }
 
 //looking for a match
-function filterMatch (filterData) {
-    const filterType = filterData.getAttribute("data-filtertype");
-    filterData = filterData.innerText.toLowerCase();
+function filterMatch (tagData) {
+    const filterType = tagData.getAttribute("data-filtertype");
+    tagData = tagData.innerText.toLowerCase();
     switch (filterType) {
         case "ingredients":
             currentTabRecipes = currentTabRecipes.filter(element => {
-                const match = searchInIngredients (element, filterData);
+                const match = searchInIngredients (element, tagData);
                 if (match == true) {
                     return true;
                 }
@@ -67,7 +73,7 @@ function filterMatch (filterData) {
             break;
         case "appliances":
             currentTabRecipes = currentTabRecipes.filter(element => {
-                const match = searchInAppliances (element, filterData);
+                const match = searchInAppliances (element, tagData);
                 if (match == true) {
                     return true;
                 }
@@ -75,7 +81,7 @@ function filterMatch (filterData) {
             break;
         case "ustensils":
             currentTabRecipes = currentTabRecipes.filter(element => {
-                const match = searchInUstensils (element, filterData);
+                const match = searchInUstensils (element, tagData);
                 if (match == true) {
                     return true;
                 }
