@@ -30,10 +30,12 @@ export function searchBarAlgo () {
     }
     else if (inputData.length < 3 && filtersDatas.length === 0) {
         currentTabRecipes = recipes;
+        searchedRecipes = recipes;
         new Recipes (recipes);
         newFiltersList (recipes);
     }
     else {
+        searchedRecipes = recipes;
         currentTabRecipes = recipes;
         filtersAlgo();
     }
