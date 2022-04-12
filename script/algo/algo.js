@@ -30,10 +30,12 @@ export function searchBarAlgo () {
     }
     else if (inputData.length < 3 && filtersDatas.length === 0) {
         currentTabRecipes = recipes;
+        searchedRecipes = recipes;
         new Recipes (recipes);
         newFiltersList (recipes);
     }
     else {
+        searchedRecipes = recipes;
         currentTabRecipes = recipes;
         filtersAlgo();
     }
@@ -54,7 +56,7 @@ function inputMatch (inputData, element) {
 
 export function filtersAlgo () {
     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
-    if (filtersDatas != 0) {
+    if (filtersDatas.length != 0) {
         filtersDatas.forEach(filterData => {
             filterMatch(filterData);
         }); 
