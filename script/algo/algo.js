@@ -78,28 +78,34 @@ function filterMatch (tagData) {
     const filterType = tagData.getAttribute("data-filtertype");
     tagData = tagData.innerText.toLowerCase();
     if (filterType === "ingredients") {
-        currentTabRecipes = currentTabRecipes.filter(element => {
+        let result = [];
+        for (const element of currentTabRecipes) {
             const match = searchInIngredients (element, tagData);
             if (match == true) {
-                return true;
+                result.push(element)
             }
-        });
+        }
+        currentTabRecipes = result;
     }
     else if (filterType === "appliances") {
-        currentTabRecipes = currentTabRecipes.filter(element => {
+        let result = [];
+        for (const element of currentTabRecipes) {
             const match = searchInAppliances (element, tagData);
             if (match == true) {
-                return true;
+                result.push(element)
             }
-        });
+        }
+        currentTabRecipes = result;
     }
     else if (filterType === "ustensils") {
-        currentTabRecipes = currentTabRecipes.filter(element => {
+        let result = [];
+        for (const element of currentTabRecipes) {
             const match = searchInUstensils (element, tagData);
             if (match == true) {
-                return true;
+                result.push(element)
             }
-        });
+        }
+        currentTabRecipes = result;
     }
 }
 
@@ -126,8 +132,9 @@ function searchInTitle (element, data) {
 
 function searchInIngredients (element, data) {
     const tabIngredients = element.ingredients;
+    const patern = new RegExp(`^${data}$`);
     for (const elem of tabIngredients) {
-        if (elem.ingredient.toLowerCase().includes(data) === true) {
+        if (patern.test(elem.ingredient.toLowerCase())) {
             return true
         }
     }
