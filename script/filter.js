@@ -1,4 +1,5 @@
 import { CreateTag } from "./templates/tag.js";
+import { filtersAlgo } from "./algo/algo.js";
 
 export class Filter {
     constructor (filters, DOMfilter, elemColor) {
@@ -61,7 +62,7 @@ export class Filter {
     }
 }
 
-class List {
+export class List {
     constructor (DOMfilter, filters, elemColor) {
         this.DOMfilter = DOMfilter;
         this.filters = filters;
@@ -96,6 +97,7 @@ class List {
             listContainer.appendChild(li);
             li.addEventListener("click", () => {
                 new Tag (li.innerText, this.elemColor, this.DOMfilter.id);
+                filtersAlgo();
             })
         });
     }
@@ -119,5 +121,6 @@ export class Tag {
     removeTag (e) {
         let element = e.target;
         element.parentNode.removeChild(element);
+        filtersAlgo();
     }
 }
