@@ -54,7 +54,7 @@ function inputMatch (inputData, element) {
 
 export function filtersAlgo () {
     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
-    if (filtersDatas != 0) {
+    if (filtersDatas.length != 0) {
         filtersDatas.forEach(filterData => {
             filterMatch(filterData);
         }); 
