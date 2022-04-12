@@ -11,12 +11,14 @@ export function searchBarAlgo () {
     const inputData = document.querySelector("#search").value.toLowerCase();
     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
     if (inputData.length > 2) {
-        searchedRecipes = filteredRecipes.filter(element => {
+        let result = [];
+        for (const element of filteredRecipes) {
             const match = inputMatch (inputData, element);
             if (match == true) {
-                return element;
+                result.push(element);
             }
-        });
+        }
+        searchedRecipes = result;
         if (searchedRecipes.length != 0) {
             new Recipes (searchedRecipes);
             newFiltersList (searchedRecipes);
@@ -57,9 +59,9 @@ function inputMatch (inputData, element) {
 export function filtersAlgo () {
     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
     if (filtersDatas.length != 0) {
-        filtersDatas.forEach(filterData => {
+        for (const filterData of filtersDatas) {
             filterMatch(filterData);
-        }); 
+        }
         new Recipes (currentTabRecipes);
         newFiltersList(currentTabRecipes);
         filteredRecipes = currentTabRecipes;
@@ -75,31 +77,29 @@ export function filtersAlgo () {
 function filterMatch (tagData) {
     const filterType = tagData.getAttribute("data-filtertype");
     tagData = tagData.innerText.toLowerCase();
-    switch (filterType) {
-        case "ingredients":
-            currentTabRecipes = currentTabRecipes.filter(element => {
-                const match = searchInIngredients (element, tagData);
-                if (match == true) {
-                    return true;
-                }
-            });
-            break;
-        case "appliances":
-            currentTabRecipes = currentTabRecipes.filter(element => {
-                const match = searchInAppliances (element, tagData);
-                if (match == true) {
-                    return true;
-                }
-            });
-            break;
-        case "ustensils":
-            currentTabRecipes = currentTabRecipes.filter(element => {
-                const match = searchInUstensils (element, tagData);
-                if (match == true) {
-                    return true;
-                }
-            });
-            break;
+    if (filterType === "ingredients") {
+        currentTabRecipes = currentTabRecipes.filter(element => {
+            const match = searchInIngredients (element, tagData);
+            if (match == true) {
+                return true;
+            }
+        });
+    }
+    else if (filterType === "appliances") {
+        currentTabRecipes = currentTabRecipes.filter(element => {
+            const match = searchInAppliances (element, tagData);
+            if (match == true) {
+                return true;
+            }
+        });
+    }
+    else if (filterType === "ustensils") {
+        currentTabRecipes = currentTabRecipes.filter(element => {
+            const match = searchInUstensils (element, tagData);
+            if (match == true) {
+                return true;
+            }
+        });
     }
 }
 
@@ -125,9 +125,12 @@ function searchInTitle (element, data) {
 }
 
 function searchInIngredients (element, data) {
-    return element.ingredients.some(element => {
-        return element.ingredient.toLowerCase().includes(data) === true;
-    });
+    const tabIngredients = element.ingredients;
+    for (const elem of tabIngredients) {
+        if (elem.ingredient.toLowerCase().includes(data) === true) {
+            return true
+        }
+    }
 }
 
 function searchInAppliances (element, data) {
@@ -135,11 +138,14 @@ function searchInAppliances (element, data) {
 }
 
 function searchInUstensils (element, data) {
-    return element.ustensils.some(element => {
-        return element.toLowerCase().includes(data) === true;
-    });
+    const tabUstensils = element.ustensils;
+    for (const elem of tabUstensils) {
+        if (elem.toLowerCase().includes(data) === true) {
+            return true
+        }
+    }
 }
 
 function searchInDescription (element, data) {
-    element.description.toLowerCase().includes(data)
+    return element.description.toLowerCase().includes(data)
 }
