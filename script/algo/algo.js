@@ -147,7 +147,7 @@ function searchInAppliances (element, data) {
 function searchInUstensils (element, data) {
     const tabUstensils = element.ustensils;
     for (const elem of tabUstensils) {
-        if (elem.toLowerCase().includes(data) === true) {
+        if (elem.toLowerCase().includes(data)) {
             return true
         }
     }
