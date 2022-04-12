@@ -5,32 +5,36 @@ import { Recipes } from "../recipes.js";
 
 let currentTabRecipes = recipes;
 let filteredRecipes = recipes;
+let searchedRecipes = recipes;
 
 export function searchBarAlgo () {
     const inputData = document.querySelector("#search").value.toLowerCase();
     const filtersDatas = Array.from(document.querySelectorAll(".tag button"));
     if (inputData.length > 2) {
-        let result = filteredRecipes.filter(element => {
+        searchedRecipes = filteredRecipes.filter(element => {
             const match = inputMatch (inputData, element);
             if (match == true) {
                 return element;
             }
         });
-        if (result.length != 0) {
-            new Recipes (result);
-            newFiltersList (result);
+        if (searchedRecipes.length != 0) {
+            new Recipes (searchedRecipes);
+            newFiltersList (searchedRecipes);
         }
         else {
             const resultSection = document.querySelector(".result-section");
             resultSection.innerHTML = `<div class="result-section__empty">Aucune recette ne correspond à votre critère… vous pouvez
             chercher « tarte aux pommes », « poisson », etc...</div>`;
         }
+        currentTabRecipes = searchedRecipes;
     }
     else if (inputData.length < 3 && filtersDatas.length === 0) {
+        currentTabRecipes = recipes;
         new Recipes (recipes);
         newFiltersList (recipes);
     }
     else {
+        currentTabRecipes = recipes;
         filtersAlgo();
     }
 }
@@ -57,7 +61,7 @@ export function filtersAlgo () {
         new Recipes (currentTabRecipes);
         newFiltersList(currentTabRecipes);
         filteredRecipes = currentTabRecipes;
-        currentTabRecipes = recipes;
+        currentTabRecipes = searchedRecipes;
     }
     else  {
         filteredRecipes = recipes;
