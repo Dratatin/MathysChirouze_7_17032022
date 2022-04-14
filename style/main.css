@@ -91,6 +91,11 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 
 .searchbar {
   -webkit-box-align: center;
@@ -301,7 +306,7 @@ h1 {
 }
 @media screen and (max-width: 768px) {
   .filterblock .filters__element__list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 .filterblock .filters__element__list li {
@@ -404,7 +409,7 @@ h1 {
 }
 
 .main {
-  margin: 0 6vw;
+  margin: 0 6vw 100px 6vw;
 }
 .main .result-section {
   position: relative;
