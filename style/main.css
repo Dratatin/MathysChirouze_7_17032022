@@ -86,7 +86,7 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1100px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -172,6 +172,11 @@ h1 {
   position: absolute;
   z-index: 1;
 }
+@media screen and (max-width: 768px) {
+  .filterblock .filters {
+    position: unset;
+  }
+}
 .filterblock .filters__element {
   border-radius: 0.4em;
   display: -webkit-box;
@@ -185,6 +190,12 @@ h1 {
   margin: 15px 15px 0px 0px;
   padding: 25px;
 }
+@media screen and (max-width: 768px) {
+  .filterblock .filters__element {
+    width: 100%;
+    margin-right: 0px;
+  }
+}
 .filterblock .filters__element--secondary {
   background: #3282F7;
 }
@@ -193,6 +204,7 @@ h1 {
 }
 .filterblock .filters__element--quaternary {
   background: #ED6454;
+  margin-right: 0px;
 }
 .filterblock .filters__element__button {
   -webkit-box-align: center;
@@ -276,6 +288,21 @@ h1 {
   /* Firefox */
   -ms-overflow-style: none;
   /* IE 10+ */
+}
+@media screen and (max-width: 1100px) {
+  .filterblock .filters__element__list {
+    grid-template-columns: repeat(2, 150px);
+  }
+}
+@media screen and (max-width: 992px) {
+  .filterblock .filters__element__list {
+    grid-template-columns: repeat(1, 150px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .filterblock .filters__element__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .filterblock .filters__element__list li {
   overflow: hidden;
@@ -382,6 +409,11 @@ h1 {
 .main .result-section {
   position: relative;
   top: 120px;
+}
+@media screen and (max-width: 768px) {
+  .main .result-section {
+    top: 30px;
+  }
 }
 .main .result-section__empty {
   color: rgba(0, 0, 0, 0.8);
