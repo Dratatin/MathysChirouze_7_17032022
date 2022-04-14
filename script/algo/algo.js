@@ -132,9 +132,8 @@ function searchInTitle (element, data) {
 
 function searchInIngredients (element, data) {
     const tabIngredients = element.ingredients;
-    const patern = new RegExp(`^${data}$`);
     for (const elem of tabIngredients) {
-        if (patern.test(elem.ingredient.toLowerCase())) {
+        if (elem.ingredient.toLowerCase().includes(data)) {
             return true
         }
     }
