@@ -141,5 +141,5 @@ function searchInUstensils (element, data) {
 }
 
 function searchInDescription (element, data) {
-    element.description.toLowerCase().includes(data)
+    return element.description.toLowerCase().includes(data)
 }
