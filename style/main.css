@@ -86,6 +86,11 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
 }
+@media screen and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .searchbar {
   -webkit-box-align: center;
@@ -349,6 +354,13 @@ h1 {
           flex: 1;
   line-height: 14.4px;
   margin-right: 10px;
+  overflow: hidden;
+}
+.recipe__description__content__liste li {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .recipe__description__content__text {
   display: -webkit-box;
