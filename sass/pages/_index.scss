@@ -3,6 +3,9 @@
     .result-section {
         position: relative;
         top: 120px;
+        @media screen and (max-width: 768px) {
+            top: 30px;
+        }
         &__empty {
             color: rgba($color: #000, $alpha: 0.8);
             display: flex;
