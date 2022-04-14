@@ -42,6 +42,12 @@
                 flex: 1;
                 line-height: 14.4px;
                 margin-right: 10px;
+                overflow: hidden;
+                li {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
             &__text {
                 display: -webkit-box;
