@@ -125,9 +125,8 @@ function searchInTitle (element, data) {
 }
 
 function searchInIngredients (element, data) {
-    const patern = new RegExp(`^${data}$`);
     return element.ingredients.some(element => {
-        return patern.test(element.ingredient.toLowerCase());
+        return element.ingredient.toLowerCase().includes(data);
     });
 }
 
